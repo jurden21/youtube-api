@@ -13,6 +13,7 @@ type
         constructor Create(AKey: String);
         destructor Destroy; override;
         function ChannelsListByChannelId(AChannelId: String): TChannelListResponse;
+        function ChannelsListByHandle(AHandle: String): TChannelListResponse;
         function ChannelsListByUsername(AUsername: String): TChannelListResponse;
     end;
 
@@ -33,6 +34,7 @@ begin
     FUrlBuilder.Free;
 end;
 
+// https://developers.google.com/youtube/v3/docs/channels/list
 function TYoutubeClient.ChannelsListByChannelId(AChannelId: String): TChannelListResponse;
 var
     Request: THttpRequest;
@@ -43,6 +45,18 @@ begin
     Result := TChannelListResponse.Parse(Response);
 end;
 
+// https://developers.google.com/youtube/v3/docs/channels/list
+function TYoutubeClient.ChannelsListByHandle(AHandle: String): TChannelListResponse;
+var
+    Request: THttpRequest;
+    Response: THttpResponse;
+begin
+    Request.Url := FUrlBuilder.ChannelsListByHandle(AHandle);
+    Response := THttpUtil.Execute(Request);
+    Result := TChannelListResponse.Parse(Response);
+end;
+
+// https://developers.google.com/youtube/v3/docs/channels/list
 function TYoutubeClient.ChannelsListByUsername(AUsername: String): TChannelListResponse;
 var
     Request: THttpRequest;

@@ -6,6 +6,7 @@ uses
     System.Generics.Collections, System.JSON, HttpUtilUnit, ChannelUnit, Vcl.Dialogs;
 
 type
+    // https://developers.google.com/youtube/v3/docs/channels/list
     TChannelListResponse = class
     private
         FChannels: TObjectList<TChannel>;

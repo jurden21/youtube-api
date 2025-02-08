@@ -16,6 +16,7 @@ type
     public
         constructor Create(AKey: String);
         function ChannelsListByChannelId(AChannelId: String): String;
+        function ChannelsListByHandle(AHandle: String): String;
         function ChannelsListByUsername(AUsername: String): String;
     end;
 
@@ -30,12 +31,17 @@ end;
 
 function TUrlBuilder.ChannelsListByChannelId(AChannelId: String): String;
 begin
-    Result := Format('%s%s?part=%s&id=%s&key=%s', [API_URL, CHANNELS_RESOURCE, CHANNELS_PART, AChannelId, FKey]);
+    Result := Format('%s%s?key=%s&part=%s&id=%s', [API_URL, CHANNELS_RESOURCE, FKey, CHANNELS_PART, AChannelId]);
+end;
+
+function TUrlBuilder.ChannelsListByHandle(AHandle: String): String;
+begin
+    Result := Format('%s%s?key=%s&part=%s&forHandle=%s', [API_URL, CHANNELS_RESOURCE, FKey, CHANNELS_PART, AHandle]);
 end;
 
 function TUrlBuilder.ChannelsListByUsername(AUsername: String): String;
 begin
-    Result := Format('%s%s?part=%s&forUsername=%s&key=%s', [API_URL, CHANNELS_RESOURCE, CHANNELS_PART, AUsername, FKey]);
+    Result := Format('%s%s?key=%s&part=%s&forUsername=%s', [API_URL, CHANNELS_RESOURCE, FKey, CHANNELS_PART, AUsername]);
 end;
 
 end.

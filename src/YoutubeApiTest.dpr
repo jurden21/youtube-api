@@ -38,6 +38,17 @@ begin
         Writeln('==============================================================');
         Writeln('');
 
+        Writeln('Start ChannelsListByHandle... (Handle=@GoogleDevelopers)');
+        Channels := Client.ChannelsListByHandle('@GoogleDevelopers').Channels;
+        if (Channels <> nil)
+        then begin
+            Writeln('Channels.Count = ' + Channels.Count.ToString);
+            for var Index := 0 to Channels.Count - 1 do
+                Writeln(Channels[Index].ToString);
+        end;
+        Writeln('==============================================================');
+        Writeln('');
+
         Writeln('Start ChannelsListByUsername... (Username=GoogleDevelopers)');
         Channels := Client.ChannelsListByUsername('GoogleDevelopers').Channels;
         if (Channels <> nil)
