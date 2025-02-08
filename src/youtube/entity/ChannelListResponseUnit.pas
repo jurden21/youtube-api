@@ -7,11 +7,11 @@ uses
 
 type
     // https://developers.google.com/youtube/v3/docs/channels/list
-    TChannelListResponse = class
+    TChannelsResponse = class
     private
         FChannels: TObjectList<TChannel>;
     public
-        class function Parse(AResponse: THttpResponse): TChannelListResponse;
+        class function Parse(AResponse: THttpResponse): TChannelsResponse;
         constructor Create;
         destructor Destroy; override;
         property Channels: TObjectList<TChannel> read FChannels;
@@ -19,25 +19,25 @@ type
 
 implementation
 
-{ TChannelListResponse }
+{ TChannelsResponse }
 
-constructor TChannelListResponse.Create;
+constructor TChannelsResponse.Create;
 begin
     FChannels := TObjectList<TChannel>.Create;
 end;
 
-destructor TChannelListResponse.Destroy;
+destructor TChannelsResponse.Destroy;
 begin
     FChannels.Free;
 end;
 
-class function TChannelListResponse.Parse(AResponse: THttpResponse): TChannelListResponse;
+class function TChannelsResponse.Parse(AResponse: THttpResponse): TChannelsResponse;
 var
     Json: TJSONObject;
     Channels: TJSONArray;
 begin
     Json := TJsonObject.ParseJSONValue(AResponse.Content) as TJSONObject;
-    Result := TChannelListResponse.Create;
+    Result := TChannelsResponse.Create;
     Channels := Json.FindValue('items') as TJSONArray;
     for var Index := 0 to Channels.Count - 1 do
         Result.Channels.Add(TChannel.Create(Channels.Items[Index]));

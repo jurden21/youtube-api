@@ -3,7 +3,7 @@ unit YoutubeClientUnit;
 interface
 
 uses
-    System.Generics.Collections, UrlBuilderUnit, ChannelListResponseUnit;
+    System.Generics.Collections, UrlBuilderUnit, ChannelsResponseUnit;
 
 type
     TYoutubeClient = class
@@ -12,9 +12,9 @@ type
     public
         constructor Create(AKey: String);
         destructor Destroy; override;
-        function ChannelsListByChannelId(AChannelId: String): TChannelListResponse;
-        function ChannelsListByHandle(AHandle: String): TChannelListResponse;
-        function ChannelsListByUsername(AUsername: String): TChannelListResponse;
+        function ChannelsListByChannelId(AChannelId: String): TChannelsResponse;
+        function ChannelsListByHandle(AHandle: String): TChannelsResponse;
+        function ChannelsListByUsername(AUsername: String): TChannelsResponse;
     end;
 
 implementation
@@ -35,36 +35,36 @@ begin
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByChannelId(AChannelId: String): TChannelListResponse;
+function TYoutubeClient.ChannelsListByChannelId(AChannelId: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
     Request.Url := FUrlBuilder.ChannelsListByChannelId(AChannelId);
     Response := THttpUtil.Execute(Request);
-    Result := TChannelListResponse.Parse(Response);
+    Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByHandle(AHandle: String): TChannelListResponse;
+function TYoutubeClient.ChannelsListByHandle(AHandle: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
     Request.Url := FUrlBuilder.ChannelsListByHandle(AHandle);
     Response := THttpUtil.Execute(Request);
-    Result := TChannelListResponse.Parse(Response);
+    Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByUsername(AUsername: String): TChannelListResponse;
+function TYoutubeClient.ChannelsListByUsername(AUsername: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
     Request.Url := FUrlBuilder.ChannelsListByUsername(AUsername);
     Response := THttpUtil.Execute(Request);
-    Result := TChannelListResponse.Parse(Response);
+    Result := TChannelsResponse.Parse(Response);
 end;
 
 end.

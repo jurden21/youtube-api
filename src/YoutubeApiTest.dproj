@@ -158,7 +158,7 @@
         <DCCReference Include="youtube\util\UrlBuilderUnit.pas"/>
         <DCCReference Include="youtube\util\HttpUtilUnit.pas"/>
         <DCCReference Include="youtube\util\JsonUtilUnit.pas"/>
-        <DCCReference Include="youtube\entity\ChannelListResponseUnit.pas"/>
+        <DCCReference Include="youtube\entity\ChannelsResponseUnit.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -14,7 +14,7 @@ uses
   UrlBuilderUnit in 'youtube\util\UrlBuilderUnit.pas',
   HttpUtilUnit in 'youtube\util\HttpUtilUnit.pas',
   JsonUtilUnit in 'youtube\util\JsonUtilUnit.pas',
-  ChannelListResponseUnit in 'youtube\entity\ChannelListResponseUnit.pas';
+  ChannelsResponseUnit in 'youtube\entity\ChannelsResponseUnit.pas';
 
 var
     Key: String;
