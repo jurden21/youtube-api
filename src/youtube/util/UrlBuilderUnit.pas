@@ -39,9 +39,9 @@ type
         function GetParamPair(AKey, AValue: String): String;
     public
         constructor Create(AKey: String);
-        function ChannelsListByChannelId(AChannelId: String): String;
-        function ChannelsListByHandle(AHandle: String): String;
-        function ChannelsListByUsername(AUsername: String): String;
+        function ChannelsByChannelId(AChannelId: String): String;
+        function ChannelsByHandle(AHandle: String): String;
+        function ChannelsByUsername(AUsername: String): String;
         function VideosListByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
         function VideosListByIds(AIds: TStringList): String;
         function SearchByKeyword(AType: String; AQuery: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
@@ -68,21 +68,21 @@ begin
     else Result := '';
 end;
 
-function TUrlBuilder.ChannelsListByChannelId(AChannelId: String): String;
+function TUrlBuilder.ChannelsByChannelId(AChannelId: String): String;
 begin
     Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
         GetParamPair(PART_KEY, CHANNELS_PART) +
         GetParamPair(ID_KEY, AChannelId);
 end;
 
-function TUrlBuilder.ChannelsListByHandle(AHandle: String): String;
+function TUrlBuilder.ChannelsByHandle(AHandle: String): String;
 begin
     Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
         GetParamPair(PART_KEY, CHANNELS_PART) +
         GetParamPair(HANDLE_KEY, AHandle);
 end;
 
-function TUrlBuilder.ChannelsListByUsername(AUsername: String): String;
+function TUrlBuilder.ChannelsByUsername(AUsername: String): String;
 begin
     Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
         GetParamPair(PART_KEY, CHANNELS_PART) +

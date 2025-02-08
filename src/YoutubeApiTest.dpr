@@ -27,8 +27,8 @@ begin
 
     try
 
-        Writeln('Start ChannelsListByChannelId... (id=UC_x5XG1OV2P6uZZ5FSM9Ttw)');
-        Channels := Client.ChannelsListByChannelId('UC_x5XG1OV2P6uZZ5FSM9Ttw').Channels;
+        Writeln('Start ChannelsByChannelId... (id=UC_x5XG1OV2P6uZZ5FSM9Ttw)');
+        Channels := Client.ChannelsByChannelId('UC_x5XG1OV2P6uZZ5FSM9Ttw').Channels;
         if (Channels <> nil)
         then begin
             Writeln('Channels.Count = ' + Channels.Count.ToString);
@@ -38,8 +38,8 @@ begin
         Writeln('==============================================================');
         Writeln('');
 
-        Writeln('Start ChannelsListByHandle... (Handle=@GoogleDevelopers)');
-        Channels := Client.ChannelsListByHandle('@GoogleDevelopers').Channels;
+        Writeln('Start ChannelsByHandle... (Handle=@GoogleDevelopers)');
+        Channels := Client.ChannelsByHandle('@GoogleDevelopers').Channels;
         if (Channels <> nil)
         then begin
             Writeln('Channels.Count = ' + Channels.Count.ToString);
@@ -49,8 +49,8 @@ begin
         Writeln('==============================================================');
         Writeln('');
 
-        Writeln('Start ChannelsListByUsername... (Username=GoogleDevelopers)');
-        Channels := Client.ChannelsListByUsername('GoogleDevelopers').Channels;
+        Writeln('Start ChannelsByUsername... (Username=GoogleDevelopers)');
+        Channels := Client.ChannelsByUsername('GoogleDevelopers').Channels;
         if (Channels <> nil)
         then begin
             Writeln('Channels.Count = ' + Channels.Count.ToString);

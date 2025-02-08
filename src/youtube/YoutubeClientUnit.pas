@@ -12,9 +12,9 @@ type
     public
         constructor Create(AKey: String);
         destructor Destroy; override;
-        function ChannelsListByChannelId(AChannelId: String): TChannelsResponse;
-        function ChannelsListByHandle(AHandle: String): TChannelsResponse;
-        function ChannelsListByUsername(AUsername: String): TChannelsResponse;
+        function ChannelsByChannelId(AChannelId: String): TChannelsResponse;
+        function ChannelsByHandle(AHandle: String): TChannelsResponse;
+        function ChannelsByUsername(AUsername: String): TChannelsResponse;
     end;
 
 implementation
@@ -35,34 +35,34 @@ begin
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByChannelId(AChannelId: String): TChannelsResponse;
+function TYoutubeClient.ChannelsByChannelId(AChannelId: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsListByChannelId(AChannelId);
+    Request.Url := FUrlBuilder.ChannelsByChannelId(AChannelId);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByHandle(AHandle: String): TChannelsResponse;
+function TYoutubeClient.ChannelsByHandle(AHandle: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsListByHandle(AHandle);
+    Request.Url := FUrlBuilder.ChannelsByHandle(AHandle);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
-function TYoutubeClient.ChannelsListByUsername(AUsername: String): TChannelsResponse;
+function TYoutubeClient.ChannelsByUsername(AUsername: String): TChannelsResponse;
 var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsListByUsername(AUsername);
+    Request.Url := FUrlBuilder.ChannelsByUsername(AUsername);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;
