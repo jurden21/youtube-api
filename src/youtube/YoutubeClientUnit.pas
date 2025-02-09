@@ -3,7 +3,7 @@ unit YoutubeClientUnit;
 interface
 
 uses
-    System.Generics.Collections, UrlBuilderUnit, ChannelsResponseUnit;
+    System.Generics.Collections, UrlBuilderUnit, ChannelsResponseUnit, PlaylistItemsResponseUnit;
 
 type
     TYoutubeClient = class
@@ -15,6 +15,7 @@ type
         function ChannelsByChannelId(AChannelId: String): TChannelsResponse;
         function ChannelsByHandle(AHandle: String): TChannelsResponse;
         function ChannelsByUsername(AUsername: String): TChannelsResponse;
+        function PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''): TPlaylistItemsResponse;
     end;
 
 implementation
@@ -65,6 +66,17 @@ begin
     Request.Url := FUrlBuilder.ChannelsByUsername(AUsername);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
+end;
+
+// https://developers.google.com/youtube/v3/docs/playlistItems/list
+function TYoutubeClient.PlaylistItemsByPlaylistId(APlaylistId, APageToken: String): TPlaylistItemsResponse;
+var
+    Request: THttpRequest;
+    Response: THttpResponse;
+begin
+    Request.Url := FUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId, APageToken);
+    Response := THttpUtil.Execute(Request);
+    Result := TPlaylistItemsResponse.Parse(Response);
 end;
 
 end.

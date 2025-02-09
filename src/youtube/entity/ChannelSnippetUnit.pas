@@ -35,7 +35,8 @@ end;
 
 function TChannelSnippet.ToString: String;
 begin
-    Result := Format('TChannelSnippet{Title=%s, CustomUrl=%s}', [FTitle, FCustomUrl]);
+    Result := Format('TChannelSnippet{Title=%s, CustomUrl=%s}',
+                  [FTitle, FCustomUrl]);
 end;
 
 end.

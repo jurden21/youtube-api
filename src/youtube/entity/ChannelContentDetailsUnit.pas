@@ -54,7 +54,8 @@ end;
 
 function TChannelContentDetails.ToString: String;
 begin
-    Result := Format('TChannelContentDetails{RelatedPaylists=%s}', [FRelatedPlaylists.ToString]);
+    Result := Format('TChannelContentDetails{RelatedPaylists=%s}',
+                  [FRelatedPlaylists.ToString]);
 end;
 
 end.

@@ -1,9 +1,9 @@
-unit ChannelListResponseUnit;
+unit ChannelsResponseUnit;
 
 interface
 
 uses
-    System.Generics.Collections, System.JSON, HttpUtilUnit, ChannelUnit, Vcl.Dialogs;
+    System.Generics.Collections, System.JSON, HttpUtilUnit, ChannelUnit;
 
 type
     // https://developers.google.com/youtube/v3/docs/channels/list

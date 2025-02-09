@@ -14,13 +14,17 @@ uses
   UrlBuilderUnit in 'youtube\util\UrlBuilderUnit.pas',
   HttpUtilUnit in 'youtube\util\HttpUtilUnit.pas',
   JsonUtilUnit in 'youtube\util\JsonUtilUnit.pas',
-  ChannelsResponseUnit in 'youtube\entity\ChannelsResponseUnit.pas';
+  ChannelsResponseUnit in 'youtube\entity\ChannelsResponseUnit.pas',
+  PlaylistItemsResponseUnit in 'youtube\entity\PlaylistItemsResponseUnit.pas',
+  PlaylistItemUnit in 'youtube\entity\PlaylistItemUnit.pas',
+  PlaylistItemSnippetUnit in 'youtube\entity\PlaylistItemSnippetUnit.pas',
+  PlaylistItemResourceIdUnit in 'youtube\entity\PlaylistItemResourceIdUnit.pas';
 
 var
     Key: String;
     Client: TYoutubeClient;
     Channels: TObjectList<TChannel>;
-
+    PlaylistItems: TObjectList<TPlaylistItem>;
 begin
     Key := TIniUtil.ReadString('Google', 'Key');
     Client := TYoutubeClient.Create(Key);
@@ -56,6 +60,17 @@ begin
             Writeln('Channels.Count = ' + Channels.Count.ToString);
             for var Index := 0 to Channels.Count - 1 do
                 Writeln(Channels[Index].ToString);
+        end;
+        Writeln('==============================================================');
+        Writeln('');
+
+        Writeln('Start PlaylistItemsByPlaylistId... (PlaylistId=UU_x5XG1OV2P6uZZ5FSM9Ttw)');
+        PlaylistItems := Client.PlaylistItemsByPlaylistId('UU_x5XG1OV2P6uZZ5FSM9Ttw').PlaylistItems;
+        if (PlaylistItems <> nil)
+        then begin
+            Writeln('PlaylistItems.Count = ' + PlaylistItems.Count.ToString);
+            for var Index := 0 to PlaylistItems.Count - 1 do
+                Writeln(PlaylistItems[Index].ToString);
         end;
         Writeln('==============================================================');
         Writeln('');

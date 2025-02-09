@@ -159,6 +159,10 @@
         <DCCReference Include="youtube\util\HttpUtilUnit.pas"/>
         <DCCReference Include="youtube\util\JsonUtilUnit.pas"/>
         <DCCReference Include="youtube\entity\ChannelsResponseUnit.pas"/>
+        <DCCReference Include="youtube\entity\PlaylistItemsResponseUnit.pas"/>
+        <DCCReference Include="youtube\entity\PlaylistItemUnit.pas"/>
+        <DCCReference Include="youtube\entity\PlaylistItemSnippetUnit.pas"/>
+        <DCCReference Include="youtube\entity\PlaylistItemResourceIdUnit.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -202,6 +206,12 @@
                 </DeployFile>
                 <DeployFile LocalName="..\bin\YoutubeApiTest.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="..\bin\YoutubeApiTest.exe" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\bin\YoutubeApiTest.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>YoutubeApiTest.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

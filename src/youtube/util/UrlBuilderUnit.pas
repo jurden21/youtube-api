@@ -42,8 +42,8 @@ type
         function ChannelsByChannelId(AChannelId: String): String;
         function ChannelsByHandle(AHandle: String): String;
         function ChannelsByUsername(AUsername: String): String;
-        function VideosListByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
-        function VideosListByIds(AIds: TStringList): String;
+        function PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
+        function VideosByIds(AIds: TStringList): String;
         function SearchByKeyword(AType: String; AQuery: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
     end;
 
@@ -89,7 +89,7 @@ begin
         GetParamPair(USERNAME_KEY, AUsername);
 end;
 
-function TUrlBuilder.VideosListByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
+function TUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
 begin
     Result := API_URL + PLAYLISTITEMS_RESOURCE + GetKeyPair +
         GetParamPair(PAGETOKEN_KEY, APageToken) +
@@ -98,7 +98,7 @@ begin
         GetParamPair(PLAYLISTID_KEY, APlaylistId);
 end;
 
-function TUrlBuilder.VideosListByIds(AIds: TStringList): String;
+function TUrlBuilder.VideosByIds(AIds: TStringList): String;
 begin
     AIds.Delimiter := ',';
     Result := API_URL + VIDEOS_RESOURCE + GetKeyPair +

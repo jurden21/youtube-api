@@ -3,8 +3,7 @@ unit ChannelUnit;
 interface
 
 uses
-    System.SysUtils, System.Json,
-    ChannelSnippetUnit, ChannelContentDetailsUnit;
+    System.SysUtils, System.Json, ChannelSnippetUnit, ChannelContentDetailsUnit;
 
 type
     /// <summary>https://developers.google.com/youtube/v3/docs/channels#resource-representation</summary>
@@ -44,7 +43,8 @@ end;
 
 function TChannel.ToString: String;
 begin
-    Result := Format('TChannel{Id=%s, Kind=%s, Snippet=%s, ContentDetails=%s}', [FId, FKind, FSnippet.ToString, FContentDetails.ToString]);
+    Result := Format('TChannel{Id=%s, Kind=%s, Snippet=%s, ContentDetails=%s}',
+                  [FId, FKind, FSnippet.ToString, FContentDetails.ToString]);
 end;
 
 end.
