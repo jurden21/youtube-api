@@ -1,4 +1,4 @@
-program YoutubeApiTest;
+program YoutubeApiTests;
 
 {$APPTYPE CONSOLE}
 {$R *.res}
@@ -18,7 +18,10 @@ uses
   PlaylistItemsResponseUnit in 'youtube\entity\PlaylistItemsResponseUnit.pas',
   PlaylistItemUnit in 'youtube\entity\PlaylistItemUnit.pas',
   PlaylistItemSnippetUnit in 'youtube\entity\PlaylistItemSnippetUnit.pas',
-  PlaylistItemResourceIdUnit in 'youtube\entity\PlaylistItemResourceIdUnit.pas';
+  PlaylistItemResourceIdUnit in 'youtube\entity\PlaylistItemResourceIdUnit.pas',
+  ChannelServiceUnit in 'youtube\service\channel\ChannelServiceUnit.pas',
+  ChannelUrlServiceUnit in 'youtube\service\channel\ChannelUrlServiceUnit.pas',
+  KeyServiceUnit in 'youtube\service\util\KeyServiceUnit.pas';
 
 var
     Key: String;

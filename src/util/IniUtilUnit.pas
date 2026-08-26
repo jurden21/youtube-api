@@ -2,9 +2,6 @@ unit IniUtilUnit;
 
 interface
 
-uses
-    System.SysUtils, System.IniFiles;
-
 type
     TIniUtil = class
     public
@@ -23,6 +20,10 @@ type
     end;
 
 implementation
+
+uses
+    System.SysUtils,
+    System.IniFiles;
 
 { TIniUtil }
 

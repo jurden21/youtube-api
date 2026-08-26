@@ -3,11 +3,16 @@ unit YoutubeClientUnit;
 interface
 
 uses
-    System.Generics.Collections, UrlBuilderUnit, ChannelsResponseUnit, PlaylistItemsResponseUnit;
+    System.Generics.Collections,
+    KeyServiceUnit,
+    UrlBuilderUnit,
+    ChannelsResponseUnit,
+    PlaylistItemsResponseUnit;
 
 type
     TYoutubeClient = class
     private
+        KeyService: IKeyService;
         FUrlBuilder: TUrlBuilder;
     public
         constructor Create(AKey: String);
@@ -27,7 +32,8 @@ uses
 
 constructor TYoutubeClient.Create(AKey: String);
 begin
-    FUrlBuilder := TUrlBuilder.Create(AKey);
+    KeyService := TKeyService.Create(AKey);
+    FUrlBuilder := TUrlBuilder.Create(KeyService);
 end;
 
 destructor TYoutubeClient.Destroy;

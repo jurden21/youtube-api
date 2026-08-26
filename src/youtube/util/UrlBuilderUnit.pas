@@ -3,12 +3,14 @@ unit UrlBuilderUnit;
 interface
 
 uses
-    System.SysUtils, System.StrUtils, System.Classes;
+    System.SysUtils,
+    System.StrUtils,
+    System.Classes,
+    KeyServiceUnit;
 
 type
     TUrlBuilder = class
     private const
-        KEY_STR = '?key=%s';
         PAIR_STR = '&%s=%s';
         API_URL = 'https://youtube.googleapis.com/youtube/v3/';
     private const
@@ -33,12 +35,11 @@ type
     private const
         MAX_RESULTS = 50;
     private
-        FKey: String;
+        KeyService: IKeyService;
     private
-        function GetKeyPair: String;
         function GetParamPair(AKey, AValue: String): String;
     public
-        constructor Create(AKey: String);
+        constructor Create(AKeyService: IKeyService);
         function ChannelsByChannelId(AChannelId: String): String;
         function ChannelsByHandle(AHandle: String): String;
         function ChannelsByUsername(AUsername: String): String;
@@ -51,14 +52,9 @@ implementation
 
 { TUrlBuilder }
 
-constructor TUrlBuilder.Create(AKey: String);
+constructor TUrlBuilder.Create(AKeyService: IKeyService);
 begin
-    FKey := AKey;
-end;
-
-function TUrlBuilder.GetKeyPair: String;
-begin
-    Result := Format(KEY_STR, [FKey]);
+    KeyService := AKeyService;
 end;
 
 function TUrlBuilder.GetParamPair(AKey, AValue: String): String;
@@ -70,28 +66,28 @@ end;
 
 function TUrlBuilder.ChannelsByChannelId(AChannelId: String): String;
 begin
-    Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
+    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
         GetParamPair(PART_KEY, CHANNELS_PART) +
         GetParamPair(ID_KEY, AChannelId);
 end;
 
 function TUrlBuilder.ChannelsByHandle(AHandle: String): String;
 begin
-    Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
+    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
         GetParamPair(PART_KEY, CHANNELS_PART) +
         GetParamPair(HANDLE_KEY, AHandle);
 end;
 
 function TUrlBuilder.ChannelsByUsername(AUsername: String): String;
 begin
-    Result := API_URL + CHANNELS_RESOURCE + GetKeyPair +
+    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
         GetParamPair(PART_KEY, CHANNELS_PART) +
         GetParamPair(USERNAME_KEY, AUsername);
 end;
 
 function TUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
 begin
-    Result := API_URL + PLAYLISTITEMS_RESOURCE + GetKeyPair +
+    Result := API_URL + PLAYLISTITEMS_RESOURCE + KeyService.GetKey +
         GetParamPair(PAGETOKEN_KEY, APageToken) +
         GetParamPair(PART_KEY, PLAYLISTITEMS_PART) +
         GetParamPair(MAX_RESULTS_KEY, AMaxResults.ToString) +
@@ -101,14 +97,14 @@ end;
 function TUrlBuilder.VideosByIds(AIds: TStringList): String;
 begin
     AIds.Delimiter := ',';
-    Result := API_URL + VIDEOS_RESOURCE + GetKeyPair +
+    Result := API_URL + VIDEOS_RESOURCE + KeyService.GetKey +
         GetParamPair(PART_KEY, VIDEOS_PART) +
         GetParamPair(ID_KEY, AIds.DelimitedText);
 end;
 
 function TUrlBuilder.SearchByKeyword(AType, AQuery: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
 begin
-    Result := API_URL + SEARCH_RESOURCE + GetKeyPair +
+    Result := API_URL + SEARCH_RESOURCE + KeyService.GetKey +
         GetParamPair(PAGETOKEN_KEY, APageToken) +
         GetParamPair(PART_KEY, SEARCH_PART) +
         GetParamPair(MAX_RESULTS_KEY, AMaxResults.ToString) +
