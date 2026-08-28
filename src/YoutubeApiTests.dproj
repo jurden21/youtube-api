@@ -135,8 +135,8 @@
         <DCCReference Include="youtube\entity\PlaylistItemSnippetUnit.pas"/>
         <DCCReference Include="youtube\entity\PlaylistItemResourceIdUnit.pas"/>
         <DCCReference Include="youtube\service\channel\ChannelServiceUnit.pas"/>
-        <DCCReference Include="youtube\service\channel\ChannelUrlServiceUnit.pas"/>
         <DCCReference Include="youtube\service\util\KeyServiceUnit.pas"/>
+        <DCCReference Include="youtube\service\util\UrlServiceUnit.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

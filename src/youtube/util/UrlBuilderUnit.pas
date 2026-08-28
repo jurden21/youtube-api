@@ -40,7 +40,6 @@ type
         function GetParamPair(AKey, AValue: String): String;
     public
         constructor Create(AKeyService: IKeyService);
-        function ChannelsByChannelId(AChannelId: String): String;
         function ChannelsByHandle(AHandle: String): String;
         function ChannelsByUsername(AUsername: String): String;
         function PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
@@ -62,13 +61,6 @@ begin
     if AValue <> ''
     then Result := Format(PAIR_STR, [AKey, AValue])
     else Result := '';
-end;
-
-function TUrlBuilder.ChannelsByChannelId(AChannelId: String): String;
-begin
-    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
-        GetParamPair(PART_KEY, CHANNELS_PART) +
-        GetParamPair(ID_KEY, AChannelId);
 end;
 
 function TUrlBuilder.ChannelsByHandle(AHandle: String): String;

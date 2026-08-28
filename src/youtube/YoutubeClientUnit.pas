@@ -5,6 +5,7 @@ interface
 uses
     System.Generics.Collections,
     KeyServiceUnit,
+    UrlServiceUnit,
     UrlBuilderUnit,
     ChannelsResponseUnit,
     PlaylistItemsResponseUnit;
@@ -13,6 +14,7 @@ type
     TYoutubeClient = class
     private
         KeyService: IKeyService;
+        UrlService: IUrlService;
         FUrlBuilder: TUrlBuilder;
     public
         constructor Create(AKey: String);
@@ -33,6 +35,7 @@ uses
 constructor TYoutubeClient.Create(AKey: String);
 begin
     KeyService := TKeyService.Create(AKey);
+    UrlService := TUrlService.Create(KeyService);
     FUrlBuilder := TUrlBuilder.Create(KeyService);
 end;
 
@@ -47,7 +50,7 @@ var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsByChannelId(AChannelId);
+    Request.Url := UrlService.ChannelsByChannelId(AChannelId);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;

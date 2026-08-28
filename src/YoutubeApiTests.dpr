@@ -20,8 +20,8 @@ uses
   PlaylistItemSnippetUnit in 'youtube\entity\PlaylistItemSnippetUnit.pas',
   PlaylistItemResourceIdUnit in 'youtube\entity\PlaylistItemResourceIdUnit.pas',
   ChannelServiceUnit in 'youtube\service\channel\ChannelServiceUnit.pas',
-  ChannelUrlServiceUnit in 'youtube\service\channel\ChannelUrlServiceUnit.pas',
-  KeyServiceUnit in 'youtube\service\util\KeyServiceUnit.pas';
+  KeyServiceUnit in 'youtube\service\util\KeyServiceUnit.pas',
+  UrlServiceUnit in 'youtube\service\util\UrlServiceUnit.pas';
 
 var
     Key: String;
