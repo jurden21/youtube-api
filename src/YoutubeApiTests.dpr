@@ -12,7 +12,7 @@ uses
   ChannelSnippetUnit in 'youtube\entity\ChannelSnippetUnit.pas',
   YoutubeClientUnit in 'youtube\YoutubeClientUnit.pas',
   UrlBuilderUnit in 'youtube\util\UrlBuilderUnit.pas',
-  HttpUtilUnit in 'youtube\util\HttpUtilUnit.pas',
+  HttpClientUnit in 'youtube\client\HttpClientUnit.pas',
   JsonUtilUnit in 'youtube\util\JsonUtilUnit.pas',
   ChannelsResponseUnit in 'youtube\entity\ChannelsResponseUnit.pas',
   PlaylistItemsResponseUnit in 'youtube\entity\PlaylistItemsResponseUnit.pas',

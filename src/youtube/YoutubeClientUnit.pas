@@ -35,7 +35,7 @@ type
 implementation
 
 uses
-    HttpUtilUnit;
+    HttpClientUnit;
 
 { TYoutubeClient }
 
@@ -57,7 +57,8 @@ var
     Response: String;
 begin
     var Url: String := UrlService.ChannelsByChannelId(AChannelId);
-    Response := THttpUtil.Execute(Url);
+    var HttpClient: IHttpClient := THttpClient.Create;
+    Response := HttpClient.Get(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
@@ -67,7 +68,8 @@ var
     Response: String;
 begin
     var Url: String := UrlService.ChannelsByChannelHandle(AHandle);
-    Response := THttpUtil.Execute(Url);
+    var HttpClient: IHttpClient := THttpClient.Create;
+    Response := HttpClient.Get(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
@@ -77,7 +79,8 @@ var
     Response: String;
 begin
     var Url: String := UrlService.ChannelsByUsername(AUsername);
-    Response := THttpUtil.Execute(Url);
+    var HttpClient: IHttpClient := THttpClient.Create;
+    Response := HttpClient.Get(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
@@ -87,7 +90,8 @@ var
     Response: String;
 begin
     var Url: String := FUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId, APageToken);
-    Response := THttpUtil.Execute(Url);
+    var HttpClient: IHttpClient := THttpClient.Create;
+    Response := HttpClient.Get(Url);
     Result := TPlaylistItemsResponse.Parse(Response);
 end;
 

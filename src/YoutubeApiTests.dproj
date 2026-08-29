@@ -127,7 +127,7 @@
         <DCCReference Include="youtube\entity\ChannelSnippetUnit.pas"/>
         <DCCReference Include="youtube\YoutubeClientUnit.pas"/>
         <DCCReference Include="youtube\util\UrlBuilderUnit.pas"/>
-        <DCCReference Include="youtube\util\HttpUtilUnit.pas"/>
+        <DCCReference Include="youtube\client\HttpClientUnit.pas"/>
         <DCCReference Include="youtube\util\JsonUtilUnit.pas"/>
         <DCCReference Include="youtube\entity\ChannelsResponseUnit.pas"/>
         <DCCReference Include="youtube\entity\PlaylistItemsResponseUnit.pas"/>

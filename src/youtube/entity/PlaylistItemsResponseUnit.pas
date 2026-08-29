@@ -3,7 +3,7 @@
 interface
 
 uses
-    System.Generics.Collections, System.JSON, HttpUtilUnit, PlaylistItemUnit;
+    System.Generics.Collections, System.JSON, PlaylistItemUnit;
 
 type
     // https://developers.google.com/youtube/v3/docs/playlistItems/list
