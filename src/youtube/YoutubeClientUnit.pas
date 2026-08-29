@@ -11,7 +11,14 @@ uses
     PlaylistItemsResponseUnit;
 
 type
-    TYoutubeClient = class
+    IYoutubeClient = interface
+        function ChannelsByChannelId(AChannelId: String): TChannelsResponse;
+        function ChannelsByHandle(AHandle: String): TChannelsResponse;
+        function ChannelsByUsername(AUsername: String): TChannelsResponse;
+        function PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''): TPlaylistItemsResponse;
+    end;
+
+    TYoutubeClient = class(TInterfacedObject, IYoutubeClient)
     private
         KeyService: IKeyService;
         UrlService: IUrlService;
@@ -61,7 +68,7 @@ var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsByHandle(AHandle);
+    Request.Url := UrlService.ChannelsByChannelHandle(AHandle);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;
@@ -72,7 +79,7 @@ var
     Request: THttpRequest;
     Response: THttpResponse;
 begin
-    Request.Url := FUrlBuilder.ChannelsByUsername(AUsername);
+    Request.Url := UrlService.ChannelsByUsername(AUsername);
     Response := THttpUtil.Execute(Request);
     Result := TChannelsResponse.Parse(Response);
 end;

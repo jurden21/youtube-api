@@ -25,8 +25,6 @@ type
     private const
         PART_KEY = 'part';
         ID_KEY = 'id';
-        HANDLE_KEY = 'forHandle';
-        USERNAME_KEY = 'forUsername';
         MAX_RESULTS_KEY = 'maxResults';
         PLAYLISTID_KEY = 'playlistId';
         PAGETOKEN_KEY = 'pageToken';
@@ -40,8 +38,6 @@ type
         function GetParamPair(AKey, AValue: String): String;
     public
         constructor Create(AKeyService: IKeyService);
-        function ChannelsByHandle(AHandle: String): String;
-        function ChannelsByUsername(AUsername: String): String;
         function PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
         function VideosByIds(AIds: TStringList): String;
         function SearchByKeyword(AType: String; AQuery: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
@@ -61,20 +57,6 @@ begin
     if AValue <> ''
     then Result := Format(PAIR_STR, [AKey, AValue])
     else Result := '';
-end;
-
-function TUrlBuilder.ChannelsByHandle(AHandle: String): String;
-begin
-    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
-        GetParamPair(PART_KEY, CHANNELS_PART) +
-        GetParamPair(HANDLE_KEY, AHandle);
-end;
-
-function TUrlBuilder.ChannelsByUsername(AUsername: String): String;
-begin
-    Result := API_URL + CHANNELS_RESOURCE + KeyService.GetKey +
-        GetParamPair(PART_KEY, CHANNELS_PART) +
-        GetParamPair(USERNAME_KEY, AUsername);
 end;
 
 function TUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId: String; APageToken: String = ''; AMaxResults: Integer = MAX_RESULTS): String;
