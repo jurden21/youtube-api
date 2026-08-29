@@ -11,7 +11,7 @@ type
     private
         FChannels: TObjectList<TChannel>;
     public
-        class function Parse(AResponse: THttpResponse): TChannelsResponse;
+        class function Parse(AContent: String): TChannelsResponse;
         constructor Create;
         destructor Destroy; override;
         property Channels: TObjectList<TChannel> read FChannels;
@@ -31,12 +31,12 @@ begin
     FChannels.Free;
 end;
 
-class function TChannelsResponse.Parse(AResponse: THttpResponse): TChannelsResponse;
+class function TChannelsResponse.Parse(AContent: String): TChannelsResponse;
 var
     Json: TJSONObject;
     Channels: TJSONArray;
 begin
-    Json := TJsonObject.ParseJSONValue(AResponse.Content) as TJSONObject;
+    Json := TJsonObject.ParseJSONValue(AContent) as TJSONObject;
     Result := TChannelsResponse.Create;
     Channels := Json.FindValue('items') as TJSONArray;
     for var Index := 0 to Channels.Count - 1 do

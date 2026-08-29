@@ -54,44 +54,40 @@ end;
 // https://developers.google.com/youtube/v3/docs/channels/list
 function TYoutubeClient.ChannelsByChannelId(AChannelId: String): TChannelsResponse;
 var
-    Request: THttpRequest;
-    Response: THttpResponse;
+    Response: String;
 begin
-    Request.Url := UrlService.ChannelsByChannelId(AChannelId);
-    Response := THttpUtil.Execute(Request);
+    var Url: String := UrlService.ChannelsByChannelId(AChannelId);
+    Response := THttpUtil.Execute(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
 function TYoutubeClient.ChannelsByHandle(AHandle: String): TChannelsResponse;
 var
-    Request: THttpRequest;
-    Response: THttpResponse;
+    Response: String;
 begin
-    Request.Url := UrlService.ChannelsByChannelHandle(AHandle);
-    Response := THttpUtil.Execute(Request);
+    var Url: String := UrlService.ChannelsByChannelHandle(AHandle);
+    Response := THttpUtil.Execute(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/channels/list
 function TYoutubeClient.ChannelsByUsername(AUsername: String): TChannelsResponse;
 var
-    Request: THttpRequest;
-    Response: THttpResponse;
+    Response: String;
 begin
-    Request.Url := UrlService.ChannelsByUsername(AUsername);
-    Response := THttpUtil.Execute(Request);
+    var Url: String := UrlService.ChannelsByUsername(AUsername);
+    Response := THttpUtil.Execute(Url);
     Result := TChannelsResponse.Parse(Response);
 end;
 
 // https://developers.google.com/youtube/v3/docs/playlistItems/list
 function TYoutubeClient.PlaylistItemsByPlaylistId(APlaylistId, APageToken: String): TPlaylistItemsResponse;
 var
-    Request: THttpRequest;
-    Response: THttpResponse;
+    Response: String;
 begin
-    Request.Url := FUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId, APageToken);
-    Response := THttpUtil.Execute(Request);
+    var Url: String := FUrlBuilder.PlaylistItemsByPlaylistId(APlaylistId, APageToken);
+    Response := THttpUtil.Execute(Url);
     Result := TPlaylistItemsResponse.Parse(Response);
 end;
 

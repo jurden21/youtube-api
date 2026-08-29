@@ -11,7 +11,7 @@ type
     private
         FPlaylistItems: TObjectList<TPlaylistItem>;
     public
-        class function Parse(AResponse: THttpResponse): TPlaylistItemsResponse;
+        class function Parse(AContent: String): TPlaylistItemsResponse;
         constructor Create;
         destructor Destroy; override;
         property PlaylistItems: TObjectList<TPlaylistItem> read FPlaylistItems;
@@ -31,12 +31,12 @@ begin
     FPlaylistItems.Free;
 end;
 
-class function TPlaylistItemsResponse.Parse(AResponse: THttpResponse): TPlaylistItemsResponse;
+class function TPlaylistItemsResponse.Parse(AContent: String): TPlaylistItemsResponse;
 var
     Json: TJSONObject;
     PlaylistItems: TJSONArray;
 begin
-    Json := TJsonObject.ParseJSONValue(AResponse.Content) as TJSONObject;
+    Json := TJsonObject.ParseJSONValue(AContent) as TJSONObject;
     Result := TPlaylistItemsResponse.Create;
     PlaylistItems := Json.FindValue('items') as TJSONArray;
     for var Index := 0 to PlaylistItems.Count - 1 do

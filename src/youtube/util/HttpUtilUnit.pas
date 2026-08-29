@@ -6,30 +6,16 @@ uses
     System.Classes, System.SysUtils, IdHTTP, IdSSLOpenSSL;
 
 type
-    THttpRequest = record
-    private
-        FUrl: String;
-    public
-        property Url: String read FUrl write FUrl;
-    end;
-
-    THttpResponse = record
-    private
-        FContent: String;
-    public
-        property Content: String read FContent write FContent;
-    end;
-
     THttpUtil = class
     public
-        class function Execute(ARequest: THttpRequest): THttpResponse;
+        class function Execute(AUrl: String): String;
     end;
 
 implementation
 
 { THttpUtil }
 
-class function THttpUtil.Execute(ARequest: THttpRequest): THttpResponse;
+class function THttpUtil.Execute(AUrl: String): String;
 var
     HttpClient: TIdHTTP;
     SSLIOHandlerSocketOpenSSL: TIdSSLIOHandlerSocketOpenSSL;
@@ -41,9 +27,10 @@ begin
     Stream := TStringStream.Create('', TEncoding.UTF8);
     try
         HttpClient.Request.Accept := 'application/json';
-        HttpClient.Get(ARequest.Url, Stream);
+        HttpClient.Request.ContentType := 'application/json';
+        HttpClient.Get(AUrl, Stream);
         Stream.Position := 0;
-        Result.Content := Stream.DataString;
+        Result := Stream.DataString;
     finally
         Stream.Free;
         SSLIOHandlerSocketOpenSSL.Free;
